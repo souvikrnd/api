@@ -5,7 +5,7 @@ app = Flask(__name__)
 db_file ="APIdata.db"
 
 @app.route('/')
-def api():
+def api_app():
     if request.method == 'GET':
         data={
             "message": "Hello"
@@ -13,15 +13,15 @@ def api():
     
         return data
     elif request.method =='POST':
-       try:
-            data = request.data
-            db = create_connection(db_file)
-            cursor = db.cursor()
-            cursor.execute("INSERT INTO api(data) values(?)",(data['key'],))
-            db.commit()
-            cursor.close()
-            db.close()
-            return jsonify(data=data)
+        data = request.data
+        db = create_connection(db_file)
+        cursor = db.cursor()
+        cursor.execute("INSERT INTO api(data) values(?)",(data['key'],))
+        db.commit()
+        cursor.close()
+        db.close()
+        return jsonify(data=data)
+            
         
 if __name__ == '__main__':
     app.run()
