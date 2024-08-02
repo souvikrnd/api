@@ -20,7 +20,7 @@ def api_app():
         db.commit()
         cursor.close()
         db.close()
-        return jsonify(data=data)
+        return jsonify({'Message': 'Done'})
             
         
 if __name__ == '__main__':
