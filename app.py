@@ -4,7 +4,7 @@ import sqlite3
 app = Flask(__name__)
 db_file ="APIdata.db"
 
-@app.route('/' methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def api():
     if request.method == 'GET':
         data={
