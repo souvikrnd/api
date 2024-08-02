@@ -1,17 +1,29 @@
-from flask import Flask, jsonify, request
+from flask import Flask,jsonify
+import sqlite3
 
 app = Flask(__name__)
+db_file ="APIdata.db"
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/' methods=['GET', 'POST'])
 def api():
     if request.method == 'GET':
-        data = {
+        data={
             "message": "Hello"
         }
-        return jsonify(data)
-    elif request.method == 'POST':
-        data = request.json  # Assuming the data is sent in JSON format
+    
+        return data
+    if request.method =='POST':
+        data = request.data
+        
+        db = create_connection(db_file)
+        cursor = db.cursor()
+        cursor.execute("INSERT INTO api(data) values(?)",(data['key'],))
+        db.commit()
+        cursor.close()
+        db.close()
+        
+        
         return jsonify(data=data)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
