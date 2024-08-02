@@ -22,8 +22,6 @@ def api():
             cursor.close()
             db.close()
             return jsonify(data=data)
-        except Error as e:
-            return jsonify({'Message': 'error'})
-
+        
 if __name__ == '__main__':
     app.run()
