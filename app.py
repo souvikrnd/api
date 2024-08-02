@@ -36,6 +36,8 @@ def api_app():
             return jsonify({'Message': 'Done'})
         except sqlite3.Error as e:
             return jsonify(status="error", message=str(e)), 500
+    else:
+        return jsonify({'Message': 'error'})
 
 if __name__ == '__main__':
     app.run(debug=True)
