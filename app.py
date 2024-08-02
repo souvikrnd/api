@@ -13,17 +13,17 @@ def api():
     
         return data
     elif request.method =='POST':
-        data = request.data
-        
-        db = create_connection(db_file)
-        cursor = db.cursor()
-        cursor.execute("INSERT INTO api(data) values(?)",(data['key'],))
-        db.commit()
-        cursor.close()
-        db.close()
-        
-        
-        return jsonify(data=data)
+       try:
+            data = request.data
+            db = create_connection(db_file)
+            cursor = db.cursor()
+            cursor.execute("INSERT INTO api(data) values(?)",(data['key'],))
+            db.commit()
+            cursor.close()
+            db.close()
+            return jsonify(data=data)
+        except sqlite3.Error as e:
+            return jsonify(status="error", message=str(e)), 500
 
 if __name__ == '__main__':
     app.run()
