@@ -23,7 +23,7 @@ def api():
         db.close()
         
         
-        return jsonify(data=data)
+        return data
 
 if __name__ == '__main__':
     app.run()
