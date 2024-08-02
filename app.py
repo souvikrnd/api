@@ -12,7 +12,7 @@ def api():
         }
     
         return data
-    if request.method =='POST':
+    elif request.method =='POST':
         data = request.data
         
         db = create_connection(db_file)
@@ -23,7 +23,7 @@ def api():
         db.close()
         
         
-        return data
+        return jsonify(data=data)
 
 if __name__ == '__main__':
     app.run()
