@@ -44,7 +44,7 @@ def api_app():
             dbdata = cursor.fetchone()
             
             if dbdata:
-                return jsonify({"msg":"got data"})
+                return jsonify(dbdata)
             else:
                 return jsonify({"msg":"NO VALUE"})
             db.commit()
