@@ -40,10 +40,10 @@ def api_app():
         #cursor.execute("INSERT INTO api (data) VALUES (?)", (data['key'],))
        
         for key, value in data.items():
-            cursor.execute("SELECT data FROM api")
+            cursor.execute("SELECT * FROM api where data=?",(value,))
             dbdata = cursor.fetchone()
-            dbjdata = jsonify(dbdata)
-            if dbjdata == value:
+            
+            if dbdata == value:
                 return dbdata
             else:
                 return jsonify({"msg":"NO VALUE"})
