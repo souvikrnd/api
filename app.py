@@ -22,8 +22,8 @@ def api_app():
         cursor = db.cursor()
         data1 = cursor.execute("SELECT * FROM api")
         db.commit()
-        cursor.close()
-        db.close()
+        #cursor.close()
+        #db.close()
         return data1
         
         return jsonify(data)
@@ -39,8 +39,8 @@ def api_app():
             cursor = db.cursor()
             cursor.execute("INSERT INTO api (data) VALUES (?)", (data['key'],))
             db.commit()
-            cursor.close()
-            db.close()
+            #cursor.close()
+            #db.close()
             return jsonify({'Message': 'Done'})
         except sqlite3.Error as e:
             return jsonify(status="error", message=str(e)), 500
