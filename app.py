@@ -42,7 +42,7 @@ def api_app():
         for key, value in data.items():
             cursor.execute("SELECT data FROM api")
             dbdata = cursor.fetchone()
-            if dbdata == value:
+            if dbdata[0] == value:
                 return dbdata
             else:
                 return jsonify({"msg":"NO VALUE"})
