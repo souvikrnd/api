@@ -46,7 +46,7 @@ def api_app():
             if dbdata:
                 return jsonify(dbdata)
             else:
-                return jsonify({"msg":"NO VALUE"})
+                return jsonify({"msg":"NO VALUE"}), 500
             db.commit()
             cursor.close()
         #db.close()
