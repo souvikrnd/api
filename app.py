@@ -23,7 +23,7 @@ def api_app():
         db.commit()
         cursor.close()
         #db.close()
-        return jsonify({data1})
+        return jsonify(data1)
         
         #return jsonify(data)
     elif request.method == 'POST':
