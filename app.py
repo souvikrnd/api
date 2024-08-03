@@ -15,8 +15,8 @@ def api_app():
     if request.method == 'GET':
         db= create_connection(db_file)
         cursor = db.cursor()
-        cursor.execute("SELECT data FROM api")
-        data1= cursor.fetchone()
+        cursor.execute("SELECT * FROM api")
+        data1= cursor.fetchall()
         db.commit()
         cursor.close()
         #db.close()
