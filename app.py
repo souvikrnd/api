@@ -20,13 +20,14 @@ def api_app():
         # }
         db= create_connection(db_file)
         cursor = db.cursor()
-        data1 = cursor.execute("SELECT * FROM api")
+        cursor.execute("SELECT * FROM api")
+        data1= cursor.fetchall()
         db.commit()
-        #cursor.close()
+        cursor.close()
         #db.close()
         return data1
         
-        return jsonify(data)
+        #return jsonify(data)
     elif request.method == 'POST':
         data = request.json  # Assuming the data is sent in JSON format
         
@@ -39,7 +40,7 @@ def api_app():
             cursor = db.cursor()
             cursor.execute("INSERT INTO api (data) VALUES (?)", (data['key'],))
             db.commit()
-            #cursor.close()
+            cursor.close()
             #db.close()
             return jsonify({'Message': 'Done'})
         except sqlite3.Error as e:
