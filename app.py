@@ -27,7 +27,7 @@ def api_app():
         data = request.json
         db = create_connection(db_file)
         cursor = db.cursor()
-        for value in data.items():
+        for key, value in data.items():
             cursor.execute("INSERT INTO api (data) value(?)",(value,))
         db.commit()
         cursor.close()
