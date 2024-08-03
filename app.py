@@ -23,7 +23,11 @@ def api_app():
         db.commit()
         cursor.close()
         #db.close()
-        return jsonify({"MYdata":data1})
+
+        apidata ={
+            "MYmsg":data1
+        }
+        return apidata
         
         #return jsonify(data)
     elif request.method == 'POST':
