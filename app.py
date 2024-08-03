@@ -28,7 +28,7 @@ def api_app():
         db = create_connection(db_file)
         cursor = db.cursor()
         for key, value in data.items():
-            cursor.execute("INSERT INTO api (data) value(?)",(value,))
+            cursor.execute("INSERT INTO api (data) values (?)",(value,))
         db.commit()
         cursor.close()
         return jsonify({"Message":"PUT is done"})
