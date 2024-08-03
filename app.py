@@ -23,9 +23,9 @@ def api_app():
         db.commit()
         cursor.close()
         #db.close()
-
+        jdata1 = jsonify(data1)
         apidata ={
-            "MYmsg":data1
+            "MYmsg":jdata1
         }
         return apidata
         
