@@ -39,7 +39,7 @@ def api_app():
         
         db = create_connection(db_file)
         cursor = db.cursor()
-        cursor.execute("INSERT INTO api (data) VALUES (?)", (data[''],))
+        cursor.execute("INSERT INTO api (data) VALUES (?)", (data['key'],))
         db.commit()
         cursor.close()
         #db.close()
