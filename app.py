@@ -7,6 +7,7 @@ db_file = "APIdata.db"
 def create_connection(db_file):
     #con = none
     con = sqlite3.connect(db_file)
+    return con
     
 
 @app.route('/', methods=['GET', 'POST'])
