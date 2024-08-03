@@ -15,9 +15,17 @@ def create_connection(db_file):
 @app.route('/', methods=['GET', 'POST'])
 def api_app():
     if request.method == 'GET':
-        data = {
-            "message": "Hello"
-        }
+        # data = {
+        #     "message": "Hello"
+        # }
+        db= create_connection(db_file)
+        cursor = db.cursor()
+        data1 = cursor.execute("SELECT * FROM api")
+        db.commit()
+        cursor.close()
+        db.close()
+        return jsonify(data=data1)
+        
         return jsonify(data)
     elif request.method == 'POST':
         data = request.json  # Assuming the data is sent in JSON format
