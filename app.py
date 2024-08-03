@@ -34,19 +34,21 @@ def api_app():
         return jsonify({"Message":"PUT is done"})
         
     elif request.method == 'POST':
-        data = request.json  # Assuming the data is sent in JSON format
-        
-        # # Check if data contains the expected key
-        # if not data or 'key' not in data:
-        #     return jsonify(status="error", message="Missing 'key' in request data"), 400
-        
+        data = request.json 
         db = create_connection(db_file)
         cursor = db.cursor()
-        cursor.execute("INSERT INTO api (data) VALUES (?)", (data['key'],))
+        #cursor.execute("INSERT INTO api (data) VALUES (?)", (data['key'],))
+        cursor.execute("SELECT * FROM api")
+        dbdata = cursor.fetchall()
+        for key, value in data.items():
+            if value == dbdata:
+                return dbdata
+            else:
+                return jsonify({"msg":"NO VALUE"})
         db.commit()
         cursor.close()
         #db.close()
-        return jsonify({'Message': 'Done'})
+        
     else:
         return jsonify({'Message': 'error'})
 
