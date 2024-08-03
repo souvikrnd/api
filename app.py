@@ -24,10 +24,10 @@ def api_app():
         cursor.close()
         #db.close()
         jdata1 = jsonify(data1)
-        apidata ={
-            "MYmsg":jdata1
-        }
-        return apidata
+        # apidata ={
+        #     "MYmsg":jdata1
+        # }
+        return jdata1
         
         #return jsonify(data)
     elif request.method == 'POST':
