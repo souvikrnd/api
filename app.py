@@ -10,12 +10,9 @@ def create_connection(db_file):
     return con
     
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST','PUT'])
 def api_app():
     if request.method == 'GET':
-        # data = {
-        #     "message": "Hello"
-        # }
         db= create_connection(db_file)
         cursor = db.cursor()
         cursor.execute("SELECT * FROM api")
@@ -24,12 +21,17 @@ def api_app():
         cursor.close()
         #db.close()
         jdata1 = jsonify(data1)
-        # apidata ={
-        #     "MYmsg":jdata1
-        # }
         return jdata1
+
+    elif request.method == 'PUT':
+        data = request.json
+        db = create_connection(db_file)
+        cursor = db.cursor()
+        cursor.execute("INSERT INTO api (data) value(?)"(value))
+        db.commit()
+        cursor.close()
+        return jsonify({"Message":"PUT is done"})
         
-        #return jsonify(data)
     elif request.method == 'POST':
         data = request.json  # Assuming the data is sent in JSON format
         
