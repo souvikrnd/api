@@ -38,9 +38,10 @@ def api_app():
         db = create_connection(db_file)
         cursor = db.cursor()
         #cursor.execute("INSERT INTO api (data) VALUES (?)", (data['key'],))
-        cursor.execute("SELECT data FROM api")
-        dbdata = cursor.fetchone()
+       
         for key, value in data.items():
+            cursor.execute("SELECT data FROM api")
+            dbdata = cursor.fetchone()
             if value == dbdata:
                 return dbdata
             else:
