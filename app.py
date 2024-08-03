@@ -43,8 +43,8 @@ def api_app():
             cursor.execute("SELECT * FROM api where data=?",(value,))
             dbdata = cursor.fetchone()
             
-            if dbdata == value:
-                return dbdata
+            if dbdata:
+                return jsonify({"msg":"got data"})
             else:
                 return jsonify({"msg":"NO VALUE"})
             db.commit()
